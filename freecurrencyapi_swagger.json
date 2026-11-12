@@ -1,87 +1,50 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "FreeCurrencyAPI - Latest Exchange Rates",
-    "description": "Swagger 2.0 escrito a mao para o conector REST V2 do Informatica CDI. Nao contem a API key.",
-    "version": "1.0"
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "1.0.0",
+    "title" : "Process1"
   },
-  "host": "api.freecurrencyapi.com",
-  "basePath": "/v1",
-  "schemes": [
-    "https"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/latest": {
-      "get": {
-        "tags": [
-          "latest"
-        ],
-        "summary": "Ultimas cotacoes em relacao a moeda base",
-        "operationId": "getLatest",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "apikey",
-            "in": "header",
-            "description": "API key da conta. O valor e informado no mapping, nao neste arquivo.",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "base_currency",
-            "in": "query",
-            "description": "Moeda base. Padrao da API: USD.",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "currencies",
-            "in": "query",
-            "description": "Moedas desejadas, separadas por virgula. Use BRL,EUR,GBP para bater com o esquema de resposta abaixo.",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Cotacoes retornadas com sucesso",
-            "schema": {
-              "$ref": "#/definitions/LatestResponse"
+  "host" : "use4-cai.dm-us.informaticacloud.com:443",
+  "basePath" : "/active-bpel/public/rt/43Fk8PhvWsQkvzAE2cMgya",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/Process1" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "Process1Operation",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "End",
+            "schema" : {
+              "$ref" : "#/definitions/Process1Response"
             }
           }
         }
       }
     }
   },
-  "definitions": {
-    "LatestResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/Rates"
-        }
-      }
-    },
-    "Rates": {
-      "type": "object",
-      "properties": {
-        "BRL": {
-          "type": "number",
-          "format": "double"
+  "definitions" : {
+    "Process1Response" : {
+      "type" : "object",
+      "properties" : {
+        "out_euro" : {
+          "type" : "string",
+          "description" : ""
         },
-        "EUR": {
-          "type": "number",
-          "format": "double"
+        "out_dolar" : {
+          "type" : "string",
+          "description" : ""
         },
-        "GBP": {
-          "type": "number",
-          "format": "double"
+        "out_libra" : {
+          "type" : "string",
+          "description" : ""
         }
+      },
+      "xml" : {
+        "name" : "Process1Response"
       }
     }
   }
