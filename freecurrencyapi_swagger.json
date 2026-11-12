@@ -1,0 +1,88 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "FreeCurrencyAPI - Latest Exchange Rates",
+    "description": "Swagger 2.0 escrito a mao para o conector REST V2 do Informatica CDI. Nao contem a API key.",
+    "version": "1.0"
+  },
+  "host": "api.freecurrencyapi.com",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/latest": {
+      "get": {
+        "tags": [
+          "latest"
+        ],
+        "summary": "Ultimas cotacoes em relacao a moeda base",
+        "operationId": "getLatest",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "apikey",
+            "in": "header",
+            "description": "API key da conta. O valor e informado no mapping, nao neste arquivo.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "base_currency",
+            "in": "query",
+            "description": "Moeda base. Padrao da API: USD.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "currencies",
+            "in": "query",
+            "description": "Moedas desejadas, separadas por virgula. Use BRL,EUR,GBP para bater com o esquema de resposta abaixo.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cotacoes retornadas com sucesso",
+            "schema": {
+              "$ref": "#/definitions/LatestResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LatestResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/Rates"
+        }
+      }
+    },
+    "Rates": {
+      "type": "object",
+      "properties": {
+        "BRL": {
+          "type": "number",
+          "format": "double"
+        },
+        "EUR": {
+          "type": "number",
+          "format": "double"
+        },
+        "GBP": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    }
+  }
+}
